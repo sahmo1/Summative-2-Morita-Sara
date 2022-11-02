@@ -30,7 +30,7 @@ public class Books implements Serializable {
 
     @NotNull
     private String title;
-    private BigDecimal price;
+    private int price;
 
     public int getId() {
         return id;
@@ -84,7 +84,7 @@ public class Books implements Serializable {
         //return price;
     //}
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

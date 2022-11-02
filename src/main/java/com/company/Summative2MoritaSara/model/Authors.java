@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-import java.awt.print.Book;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -21,7 +21,7 @@ public class Authors implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
-    private Set<Book> books = new HashSet<>();
+    private Set<Books> books = new HashSet<>();
     @NotNull
     private String firstName;
     @NotNull

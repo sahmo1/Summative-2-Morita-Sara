@@ -22,7 +22,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.Flow;
+
 
 import static org.mockito.Mockito.doReturn;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -76,7 +76,7 @@ public class BookControllerTest {
         book.setPublisherID(publisher.getId());
         book.setTitle("TestTitle");
         book.setIsbn("ibsn12345");
-        book.setPrice(new BigDecimal("9.99"));
+        book.setPrice(20);
 
         bookJson = mapper.writeValueAsString(book);
 
@@ -85,23 +85,23 @@ public class BookControllerTest {
         book2.setPublisherID(publisher.getId());
         book2.setTitle("TestTitle2");
         book2.setIsbn("book2isbn");
-        book2.setPrice(new BigDecimal("10.99"));
+        book2.setPrice(10);
 
         allBooksJson = mapper.writeValueAsString(allBooks);
     }
 
     @Test
     public void shouldCreateNewBookOnPostRequest() throws Exception {
-        Books inputRsvp = new Books();
-        inputRsvp.setId(1);
-        inputRsvp.setAuthorID(1);
-        inputRsvp.setPublisherID(2);
-        inputRsvp.setTitle("TestTitle2");
-        inputRsvp.setIsbn("book2isbn");
-        inputRsvp.setPrice(BigDecimal.valueOf(10.99));
-        String inputJson = mapper.writeValueAsString(inputRsvp);
+        Books input = new Books();
+        input.setId(1);
+        input.setAuthorID(1);
+        input.setPublisherID(2);
+        input.setTitle("TestTitle2");
+        input.setIsbn("book2isbn");
+        input.setPrice(10);
+        String inputJson = mapper.writeValueAsString(input);
 
-        doReturn(book).when(bookRepo).save(inputRsvp);
+        doReturn(book).when(bookRepo).save(input);
 
         mockMvc.perform(
                         post("/books")
@@ -141,7 +141,7 @@ public class BookControllerTest {
         inputBook.setPublisherID(2);
         inputBook.setTitle("TestTitle2");
         inputBook.setIsbn("book2isbn");
-        inputBook.setPrice(BigDecimal.valueOf((10.99)));
+        inputBook.setPrice(10);
         String inputJson = mapper.writeValueAsString(inputBook);
 
         doReturn(inputBook).when(bookRepo).save(inputBook);
@@ -164,7 +164,7 @@ public class BookControllerTest {
 
     @Test
     public void shouldBStatusOkForNonExistentRsvpId() throws Exception {
-        doReturn(Optional.empty()).when(bookRepo).findById(35);
+        doReturn(Optional.empty()).when(bookRepo).findById(10);
 
         mockMvc.perform(
                         get("/books/10"))

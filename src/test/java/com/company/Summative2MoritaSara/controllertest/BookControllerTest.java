@@ -98,7 +98,7 @@ public class BookControllerTest {
         inputRsvp.setPublisherID(2);
         inputRsvp.setTitle("TestTitle2");
         inputRsvp.setIsbn("book2isbn");
-        inputRsvp.setPrice(new BigDecimal("10.99"));
+        inputRsvp.setPrice(BigDecimal.valueOf(10.99));
         String inputJson = mapper.writeValueAsString(inputRsvp);
 
         doReturn(book).when(bookRepo).save(inputRsvp);
@@ -141,7 +141,7 @@ public class BookControllerTest {
         inputBook.setPublisherID(2);
         inputBook.setTitle("TestTitle2");
         inputBook.setIsbn("book2isbn");
-        inputBook.setPrice(new BigDecimal("10.99"));
+        inputBook.setPrice(BigDecimal.valueOf((10.99)));
         String inputJson = mapper.writeValueAsString(inputBook);
 
         doReturn(inputBook).when(bookRepo).save(inputBook);

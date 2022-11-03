@@ -16,6 +16,7 @@ import java.util.Set;
 public class Authors implements Serializable {
 
     @Id
+    @JoinColumn(name = "author_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

@@ -95,18 +95,6 @@ public class PublisherControllerTest {
                 );
 
     }
-
-    @Test
-    public void shouldReturnAllPublishers() throws Exception {
-        doReturn(allPublisher).when(pubRepo).findAll();
-
-        mockMvc.perform(
-                        get("/publishers"))
-                .andExpect(status().isOk())
-                .andExpect(content().json(allPublisherJson)
-                );
-    }
-
     @Test
     public void shouldUpdateByIdAndReturn204StatusCode() throws Exception {
         mockMvc.perform(

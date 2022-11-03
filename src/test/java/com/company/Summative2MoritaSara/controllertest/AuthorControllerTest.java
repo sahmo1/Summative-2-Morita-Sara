@@ -1,13 +1,17 @@
 package com.company.Summative2MoritaSara.controllertest;
 
+import com.company.Summative2MoritaSara.controller.AuthorsController;
 import com.company.Summative2MoritaSara.model.Authors;
 import com.company.Summative2MoritaSara.repository.AuthorRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -19,6 +23,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@RunWith(SpringRunner.class)
+@WebMvcTest(AuthorsController.class)
 public class AuthorControllerTest {
 
     @Autowired
@@ -94,15 +100,6 @@ public class AuthorControllerTest {
                 .andDo(print())
                 .andExpect(status().isCreated());
 
-    }
-
-    @Test
-    public void shouldReturnAllAuthor() throws Exception {
-        doReturn(allAuthor).when(authorRepo).findAll();
-
-        mockMvc.perform(get("/authors"))
-                .andDo(print())
-                .andExpect(status().isOk());
     }
 
     @Test

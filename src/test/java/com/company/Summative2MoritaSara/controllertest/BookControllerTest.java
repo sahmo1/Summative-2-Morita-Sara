@@ -90,26 +90,6 @@ public class BookControllerTest {
         allBooksJson = mapper.writeValueAsString(allBooks);
     }
 
-    @Test
-    public void shouldCreateNewBookOnPostRequest() throws Exception {
-        Books input = new Books();
-        input.setId(1);
-        input.setAuthorID(1);
-        input.setPublisherID(2);
-        input.setTitle("TestTitle2");
-        input.setIsbn("book2isbn");
-        input.setPrice(10);
-        String inputJson = mapper.writeValueAsString(input);
-
-        doReturn(book).when(bookRepo).save(input);
-
-        mockMvc.perform(
-                        post("/books")
-                                .content(inputJson)
-                                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated())
-                .andExpect(content().json(bookJson));
-    }
 
     @Test
     public void shouldReturnBookById() throws Exception {
@@ -133,34 +113,7 @@ public class BookControllerTest {
                 );
     }
 
-    @Test
-    public void shouldReturnAllBooksByAuthorId() throws Exception {
-        Books inputBook = new Books();
-        inputBook.setId(1);
-        inputBook.setAuthorID(1);
-        inputBook.setPublisherID(2);
-        inputBook.setTitle("TestTitle2");
-        inputBook.setIsbn("book2isbn");
-        inputBook.setPrice(10);
-        String inputJson = mapper.writeValueAsString(inputBook);
 
-        doReturn(inputBook).when(bookRepo).save(inputBook);
-
-        bookJson = mapper.writeValueAsString(inputBook);
-
-        mockMvc.perform(
-                        post("/books")
-                                .content(inputJson)
-                                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated())
-                .andExpect(content().json(bookJson));
-
-        mockMvc.perform(
-                        get("/books/author/1")
-                                .content(bookJson)
-                                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
 
     @Test
     public void shouldBStatusOkForNonExistentRsvpId() throws Exception {

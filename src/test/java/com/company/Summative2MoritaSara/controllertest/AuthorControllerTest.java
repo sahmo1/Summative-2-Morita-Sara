@@ -109,7 +109,7 @@ public class AuthorControllerTest {
     public void shouldReturnAuthorById() throws Exception {
         Authors author = new Authors();
         Authors inputAuthor2 = new Authors();
-        inputAuthor2.setId(1);
+        inputAuthor2.setId(2);
         inputAuthor2.setFirstName("Sponge");
         inputAuthor2.setLastName("Bob");
         inputAuthor2.setStreet("456 ABC");
